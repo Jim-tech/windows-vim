@@ -243,6 +243,10 @@ nnoremap <F12> :cclose<CR>
 nnoremap <F9> :cn<CR>
 nnoremap <F10> :cp<CR>
 
+" switch buffer
+nnoremap <F3> :bp<CR>
+nnoremap <F4> :bn<CR>
+
 "tabularize config
 nmap <leader>a= :Tabularize /=<cr>
 nmap <leader>a: :Tabularize /:<cr>
@@ -355,8 +359,6 @@ au FileType nerdtree cnoreabbrev <buffer> BD <nop>
 "better tag navigation from www.vimbits.com {{{
 nnoremap <leader><Enter> <C-]>
 "}}}
-
-
 
 "automatically save foldings in vim{{{
 " au BufWinLeave * silent! mkview
