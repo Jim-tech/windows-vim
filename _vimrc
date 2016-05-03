@@ -64,6 +64,7 @@ Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
 " Plugin '$VIM_HOME/vimfiles/bundle/Vundle.vim'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
@@ -111,7 +112,7 @@ Plugin  'sjl/gundo.vim'
 Plugin  'nelstrom/vim-visual-star-search'
 Plugin  'nelstrom/vim-qargs'
 Plugin  'klen/python-mode'
-Plugin 'vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Plugin  'SirVer/ultisnips'
 " Plugin  'xuhdev/SingleCompile'
@@ -146,6 +147,8 @@ Plugin  'bufexplorer.zip'
 " Plugin  'calendar.vim--Matsumoto'
 " Plugin  'DoxygenToolkit.vim'
 Plugin  'ZoomWin'
+
+" DrawIt
 Plugin  'DrawIt'
 " ------------------------------------------------------------------------
 
@@ -190,6 +193,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " 手动刷新tags(含cscope)
+let g:tagbar_ctags_bin="ctags"
 nmap tg :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q *<CR>:set tags+=./tags<CR>:!cscope -Rbq<CR>:cs add ./cscope.out .<CR>
 
 " 切换buffer
@@ -198,15 +202,15 @@ nnoremap ]b :bn<CR>
 
 " cscope设置
 if has("cscope")
-"    set csprg=/usr/bin/cscope   " 制定cscope命令
+    set csprg=cscope   " 制定cscope命令
     set csto=0                  " ctags查找顺序，0表示先cscope数据库再标签文件，1表示先标签文件爱
     set cst                     " 同时搜索tag文件和cscope数据库
     set cscopequickfix=s-,c-,d-,i-,t-,e-  "使用QucikFix窗口来显示cscope查找结果
     set nocsverb
     if filereadable("cscope.out")  "如果当前目录下有cscope.out则加载进Vim
         cs add cscope.out
-    elseif $CSCOPE_DB != ""       "否则只要环境变量不为空就添加制定的数据库到Vim
-        cs add $CSCOPE_DB
+    elseif $cscope_DB != ""       "否则只要环境变量不为空就添加制定的数据库到Vim
+        cs add $cscope_DB
     endif
     set csverb
 endif
@@ -239,6 +243,22 @@ nnoremap <F12> :cclose<CR>
 nnoremap <F9> :cn<CR>
 nnoremap <F10> :cp<CR>
 
+"tabularize config
+nmap <leader>a= :Tabularize /=<cr>
+nmap <leader>a: :Tabularize /:<cr>
+nmap <leader>a, :Tabularize /,<cr>
+
+" switch between c/h
+nnoremap <F6> :A<CR>
+
+" vim-airline
+set laststatus=2
+set t_Co=256
+" set g:airline_theme="durant"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " =============================================================================
 
 " =============================================================================
@@ -254,7 +274,7 @@ set smartindent        "cindent smartindent   autoindent
 set autoindent        "cindent smartindent   autoindent
 set tabstop=4     " tab占用4个空格
 set shiftwidth=4  " 设置缩进为4字节
-set expandtab     " 扩展tab键为空格
+" set expandtab     " 扩展tab键为空格
 set incsearch     " 增量式搜索
 set hlsearch      " 高亮搜索
 
@@ -280,8 +300,8 @@ autocmd FileType python set smartindent
 set autoread
 
 " 设置当前横竖线
-" set cursorline
-" set cursorcolumn
+"set cursorline
+"set cursorcolumn
 
 set ruler
 set showcmd
@@ -335,6 +355,7 @@ au FileType nerdtree cnoreabbrev <buffer> BD <nop>
 "better tag navigation from www.vimbits.com {{{
 nnoremap <leader><Enter> <C-]>
 "}}}
+
 
 
 "automatically save foldings in vim{{{
