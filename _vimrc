@@ -48,8 +48,8 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=$VIM_HOME/vimfiles/bundle/Vundle.vim
-call vundle#begin('$VIM_HOME/vimfiles/bundle/')
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin('$HOME/.vim/bundle/')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -83,7 +83,6 @@ Plugin 'tommcdo/vim-exchange'
 
 Plugin 'scrooloose/nerdtree'
 Plugin  'scrooloose/syntastic'
-" Plugin 'tommcdo/vim-exchange'
 Plugin 'terryma/vim-multiple-cursors'
 
 " tpope's awesome vim plugins
@@ -105,10 +104,18 @@ Plugin 'sickill/vim-monokai'
 Plugin  'kien/ctrlp.vim'
 Plugin  'Lokaltog/vim-easymotion'
 " Plugin 'xolox/vim-lua-ftplugin'
-" Plugin  'gabrielelana/vim-markdown'
+
 Plugin  'pangloss/vim-javascript'
 Plugin  'majutsushi/tagbar'
+
+" text align
 Plugin 'godlygeek/tabular'
+
+" markdown syntax highlight. Must behind tabular
+Plugin 'plasticboy/vim-markdown'
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
+
 Plugin  'sjl/gundo.vim'
 Plugin  'nelstrom/vim-visual-star-search'
 Plugin  'nelstrom/vim-qargs'
@@ -124,7 +131,7 @@ Plugin  'mileszs/ack.vim'
 " Plugin  'kchmck/vim-coffee-script'
 " Plugin  'skammer/vim-css-color'
 Plugin  'xolox/vim-misc'
-Plugin  'Valloric/YouCompleteMe'
+" Plugin  'Valloric/YouCompleteMe'
 " if you use Vim for programming, please comment the necomplcache and use
 " YouComplete Me instead
 " Plugin 'Shougo/neocomplcache.vim'
@@ -366,6 +373,10 @@ nnoremap <leader><Enter> <C-]>
 " au BufWinLeave * silent! mkview
 " au BufWinEnter * silent! loadview
 "}}}
+
+" markdown preview
+nmap <silent> <leader>md :MarkdownPreview<cr>
+imap <silent> <leader>md :MarkdownPreview<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YouCompleteMe  代码自动补全
